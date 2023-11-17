@@ -138,6 +138,22 @@ def get_mcs_header(sch_lines, mcs_size=0, pcm_data_offset=0, pcm_data_size=0, ad
       mcs_header.extend(bytes([0x00, 0x08, 0x1d, 0x03]))
       mcs_header.extend(bytes([0x00, 0x00, 0x00, 0x00]))
 
+    elif sch_args[0] == "PCM_PLAY_S32":
+      mcs_header.extend(bytes([0x00, 0x18]))
+      mcs_header.extend(pcm_data_offset.to_bytes(4, 'big'))
+      mcs_header.extend(pcm_data_size.to_bytes(4, 'big'))
+      mcs_header.extend(bytes([0x00, 0x00]))
+      mcs_header.extend(bytes([0x00, 0x08, 0x1c, 0x03]))
+      mcs_header.extend(bytes([0x00, 0x00, 0x00, 0x00]))
+
+    elif sch_args[0] == "PCM_PLAY_S24":
+      mcs_header.extend(bytes([0x00, 0x18]))
+      mcs_header.extend(pcm_data_offset.to_bytes(4, 'big'))
+      mcs_header.extend(pcm_data_size.to_bytes(4, 'big'))
+      mcs_header.extend(bytes([0x00, 0x00]))
+      mcs_header.extend(bytes([0x00, 0x08, 0x1b, 0x03]))
+      mcs_header.extend(bytes([0x00, 0x00, 0x00, 0x00]))
+
     elif sch_args[0] == "PCM_PLAY_S22":
       mcs_header.extend(bytes([0x00, 0x18]))
       mcs_header.extend(pcm_data_offset.to_bytes(4, 'big'))
